@@ -21,4 +21,26 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>AdminHandler</servlet-name>
+		<servlet-class>force.adminView.AdminHandler</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AdminHandler</servlet-name>
+		<url-pattern>/admin</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>EmployeeHandler</servlet-name>
+		<servlet-class>force.employeeView.EmployeeHandler</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>EmployeeHandler</servlet-name>
+		<url-pattern>/employee</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
