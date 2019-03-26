@@ -2,7 +2,6 @@ package force.Test;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,13 +12,10 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.Test;
 
-import force.TransferObjects.Employee;
 import force.TransferObjects.Reimbursement;
 import force.adminDAO.AdminDAOImpl;
 import force.employeeDAO.EmployeeDAOImpl;
-import force.mvcLogin.AuthenticationHandler;
 
 public class DatabaseCallsTest {
 
@@ -33,38 +29,6 @@ public class DatabaseCallsTest {
 		System.out.println("Test Complete...");
 	}
 	
-//---------------------------------BEGIN MVC LOGIN TESTS---------------------------------
-	@Ignore
-	public void loginTestSuccess() {
-		AuthenticationHandler a = new AuthenticationHandler();
-
-		Employee test = a.login("Quinton", "1234");
-		Employee q = new Employee();
-
-		assertEquals(q, test);
-	}
-
-	@Ignore
-	public void loginTestBadUsername() {
-		AuthenticationHandler a = new AuthenticationHandler();
-
-		Employee test = a.login("Quinton1", "1234");
-		Employee q = new Employee();
-
-		assertEquals(null, test);
-	}
-
-	@Ignore
-	public void loginTestBadPassword() {
-		AuthenticationHandler a = new AuthenticationHandler();
-
-		Employee test = a.login("Quinton", "12345");
-		Employee q = new Employee();
-
-		assertEquals(null, test);
-	}
-
-//---------------------------------END MVC LOGIN TESTS---------------------------------	
 //---------------------------------BEGIN ADMIN DAO TESTS-------------------------------	
 
 	@Ignore
