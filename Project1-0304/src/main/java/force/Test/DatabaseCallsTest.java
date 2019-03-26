@@ -12,9 +12,11 @@ import java.util.ArrayList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Test;
 
 import force.TransferObjects.Reimbursement;
 import force.adminDAO.AdminDAOImpl;
+import force.authenticateDAO.AuthenticateDAOImpl;
 import force.employeeDAO.EmployeeDAOImpl;
 
 public class DatabaseCallsTest {
@@ -29,8 +31,46 @@ public class DatabaseCallsTest {
 		System.out.println("Test Complete...");
 	}
 	
+//---------------------------------BEGIN AUTHENTICATE DAO TESTS------------------------
+	@Test
+	public void successfulLogin() {
+		AuthenticateDAOImpl a = new AuthenticateDAOImpl();
+		
+		if(a.authenticate("Quinton", "1234") != null) {
+			assertEquals(true,true);
+		}else {
+			assertEquals(false,true);
+		}
+	}
+	
+	@Test
+	public void unSuccessfulLoginUsername() {
+		AuthenticateDAOImpl a = new AuthenticateDAOImpl();
+		
+		if(a.authenticate("Quinto", "1234") == null) {
+			assertEquals(true,true);
+		}else {
+			assertEquals(false,true);
+		}
+	}
+	
+	@Test
+	public void unSuccessfulLoginPassword() {
+		AuthenticateDAOImpl a = new AuthenticateDAOImpl();
+		
+		if(a.authenticate("Quinton", "12345") == null) {
+			assertEquals(true,true);
+		}else {
+			assertEquals(false,true);
+		}
+	}
+	
+	
+//---------------------------------END AUTHENTICATE DAO TESTS--------------------------	
 //---------------------------------BEGIN ADMIN DAO TESTS-------------------------------	
 
+	
+	
 	@Ignore
 	public void updateRequestTest() {
 

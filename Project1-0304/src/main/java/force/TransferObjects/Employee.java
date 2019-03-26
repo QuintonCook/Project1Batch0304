@@ -8,7 +8,8 @@ public class Employee {
 	public String userLastName;
 	public String userEmail;
 	public int userRoleId;
-	
+	public static final int ADMINROLEID = 1;
+	public static final int EMPLOYEEROLEID = 0;
 	
 	public Employee(int ersUsersId, String ersUserName, String password, String userFirstName, String userLastName,
 			String userEmail, int userRoleId) {

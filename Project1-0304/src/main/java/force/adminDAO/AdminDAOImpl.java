@@ -16,9 +16,14 @@ public class AdminDAOImpl implements AdminDAO {
 	public AdminDAOImpl() {
 
 		try {
+			//sets up the JDBC driver!
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 			// initiates the connection to the database
 			conn = DriverManager.getConnection(url, username, passwordDB);
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -22,7 +22,7 @@ public class AuthenticationHandler extends HttpServlet {
 	AuthenticationStep start;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
         start.init(getServletContext(), request, response);
