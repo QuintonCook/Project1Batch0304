@@ -24,7 +24,7 @@ public class AdminHandler extends HttpServlet {
 		// if there is no current session, send the user to the login screen
 		// also make sure that they are an admin
 		Employee e = (Employee) request.getSession(false).getAttribute("employee");
-		if (request.getSession(false) == null && e.userRoleId == 1) {
+		if (request.getSession(false) == null && e.userRoleId == Employee.ADMINROLEID) {
 			// initialize the command off of the request parameters
 			UserCommand command = getCommand(request);
 			command.init(getServletContext(), request, response);
