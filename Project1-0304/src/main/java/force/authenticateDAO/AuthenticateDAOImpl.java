@@ -15,7 +15,7 @@ public class AuthenticateDAOImpl implements AuthenticateDAO {
 	public AuthenticateDAOImpl() {
 		try {
 			//sets up the JDBC driver!
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			// initiates the connection to the database
 			conn = DriverManager.getConnection(url, username, passwordDB);

@@ -11,8 +11,10 @@ public class ViewTicketsCommand extends UserCommand {
 
 	@Override
 	public void process() {
+		
+		//get the reimbursements from the database
 		ArrayList<Reimbursement> result = employee.viewReimbursements(user.ersUsersId);
-
+		
 		// convert the result to json
 		String json = new Gson().toJson(result);
 
@@ -20,11 +22,16 @@ public class ViewTicketsCommand extends UserCommand {
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		
+		//log the event
+		logger.info("The database was queried");
+		
 		try {
 			response.getWriter().write(json);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.warn(e);
+		}catch (NullPointerException e) {
+			logger.warn(e);
 		}
 
 	}

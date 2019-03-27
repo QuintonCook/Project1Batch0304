@@ -17,7 +17,7 @@ public class AdminView extends AuthenticationStep {
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.warn(e);
 		}
 	}
 }

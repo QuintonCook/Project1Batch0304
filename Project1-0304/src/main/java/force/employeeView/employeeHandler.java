@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import force.commands.UnknownCommand;
 import force.commands.UserCommand;
 
-public class employeeHandler extends HttpServlet {
+public class EmployeeHandler extends HttpServlet {
 
 
 	/**
@@ -21,6 +21,8 @@ public class employeeHandler extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		System.out.println("IM HIT");
 		//if there is no current session, send the user to the login screen
 		if(request.getSession(false) == null) {
 			UserCommand command = getCommand(request);

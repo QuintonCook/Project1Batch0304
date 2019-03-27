@@ -23,8 +23,8 @@
 	
 	<servlet>
 		<servlet-name>AdminHandler</servlet-name>
-		<servlet-class>force.adminView.AdminHandler</servlet-class>
-		<load-on-startup>1</load-on-startup>
+		<servlet-class>force.servlet.AdminHandler</servlet-class>
+		<load-on-startup>3</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
@@ -35,7 +35,7 @@
 	<servlet>
 		<servlet-name>EmployeeHandler</servlet-name>
 		<servlet-class>force.employeeView.EmployeeHandler</servlet-class>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>2</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
@@ -43,4 +43,14 @@
 		<url-pattern>/employee</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>ControllerTest</servlet-name>
+		<servlet-class>force.Test.ControllerTest</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>ControllerTest</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
 </web-app>

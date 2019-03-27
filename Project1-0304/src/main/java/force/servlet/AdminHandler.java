@@ -1,4 +1,4 @@
-package force.adminView;
+package force.servlet;
 
 import java.io.IOException;
 
@@ -6,6 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import force.TransferObjects.Employee;
 import force.commands.UnknownCommand;
@@ -17,26 +20,32 @@ public class AdminHandler extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	final static Logger logger = LogManager.getLogger(AdminHandler.class);
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// if there is no current session, send the user to the login screen
-		// also make sure that they are an admin
-		Employee e = (Employee) request.getSession(false).getAttribute("employee");
-		if (request.getSession(false) == null && e.userRoleId == Employee.ADMINROLEID) {
-			// initialize the command off of the request parameters
-			UserCommand command = getCommand(request);
-			command.init(getServletContext(), request, response);
-			command.process();
-		} else {
-			response.sendRedirect("/HTML/login.html");
-		}
+
+		logger.info("A post request was recieved");
+		// initialize the command off of the request parameters
+		UserCommand command = getCommand(request);
+		command.init(getServletContext(), request, response);
+		command.process();
+	}
+
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// initialize the command off of the request parameters
+		UserCommand command = getCommand(request);
+		command.init(getServletContext(), request, response);
+		command.process();
 	}
 
 	@Override
 	public void init() throws ServletException {
-		System.out.println("Servlet " + this.getServletName() + " has started");
+		logger.info("Servlet " + this.getServletName() + " has started");
 	}
 
 	private UserCommand getCommand(HttpServletRequest request) {
@@ -46,6 +55,7 @@ public class AdminHandler extends HttpServlet {
 			Class<?> type = Class.forName(String.format("force.commands.%sCommand", request.getParameter("command")));
 			return (UserCommand) type.asSubclass(UserCommand.class).newInstance();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return new UnknownCommand();
 		}
 	}

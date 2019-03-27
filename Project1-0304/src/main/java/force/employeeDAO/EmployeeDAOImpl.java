@@ -17,7 +17,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public EmployeeDAOImpl() {
 		try {
 			//sets up the JDBC driver!
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			 Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			// initiates the connection to the database
 			conn = DriverManager.getConnection(url, username, passwordDB);
@@ -56,6 +56,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public ArrayList<Reimbursement> viewReimbursements(int reimbAuthor) {
 		String statement = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_AUTHOR = ?";
 		ArrayList<Reimbursement> result = null;
+		System.out.println("MADE IT TO VIEW REIMBURSEMENT");
 
 		try {
 			// setup the query and execute
