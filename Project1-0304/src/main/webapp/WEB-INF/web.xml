@@ -2,8 +2,8 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>Project1-0304</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
+    <welcome-file>login.html</welcome-file>
+    <welcome-file>login.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
@@ -11,46 +11,14 @@
   </welcome-file-list>
   
   	<servlet>
-		<servlet-name>LoginHandler</servlet-name>
-		<servlet-class>force.mvcLogin.AuthenticationHandler</servlet-class>
+		<servlet-name>FrontServlet</servlet-name>
+		<servlet-class>force.servlet.FrontServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>LoginHandler</servlet-name>
-		<url-pattern>/login</url-pattern>
+		<servlet-name>FrontServlet</servlet-name>
+		<url-pattern>/controller</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>AdminHandler</servlet-name>
-		<servlet-class>force.servlet.AdminHandler</servlet-class>
-		<load-on-startup>3</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>AdminHandler</servlet-name>
-		<url-pattern>/admin</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>EmployeeHandler</servlet-name>
-		<servlet-class>force.employeeView.EmployeeHandler</servlet-class>
-		<load-on-startup>2</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>EmployeeHandler</servlet-name>
-		<url-pattern>/employee</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>ControllerTest</servlet-name>
-		<servlet-class>force.Test.ControllerTest</servlet-class>
-		<load-on-startup>2</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>ControllerTest</servlet-name>
-		<url-pattern>/test</url-pattern>
-	</servlet-mapping>
 </web-app>

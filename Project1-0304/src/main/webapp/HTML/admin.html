@@ -2,9 +2,90 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>Admin Page</title>
 </head>
-<body>
-<h1>ADMINS CAN LOGIN</h1>
+
+<body class=backdrop2>
+
+	<div class="container">
+		<h2 style="font-size: 90px;">Administrator ERS</h2>
+		<br> <br>
+
+		<form action="/Project1-0304/controller?command=AddReimbursement">
+			<div class="form-group">
+				<label for="reimbursementAmmounts">Reimbursement Ammount</label> <input
+					type="email" class="form-control" id="reimbursementAmmount"
+					aria-describedby="emailHelp" placeholder="$" name="ammount">
+			</div>
+			<div class="form-group">
+				<label for="reimbursementDescriptions">Reimbursement
+					Description</label>
+				<textarea class="form-control" id="description" rows="3"
+					placeholder="250 characters max" name="description"></textarea>
+			</div>
+			<button id="boom" type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+
+	<div>
+		<br>
+		<hr>
+		<br>
+	</div>
+
+	<div class="container" id="myTickets">
+		<h3>Your Reimbursements</h3>
+		<div class="row">
+			<div class="col-sm">Amount</div>
+			<div class="col-sm">Submitted</div>
+			<div class="col-sm">Resolved</div>
+			<div class="col-sm">Description</div>
+			<div class="col-sm">Author</div>
+			<div class="col-sm">Resolved By</div>
+			<div class="col-sm">Status</div>
+			<div class="col-sm">Type</div>
+		</div>
+	</div>
+
+
+	<div>
+		<br>
+		<hr>
+		<br>
+	</div>
+
+	<div class="container">
+		<h3>Other Reimbursements</h3>
+		<button id="approvebtn" type="button" class="btn btn-primary btn-lg">Approve</button>
+		<button id="denybtn" type="button" class="btn btn-primary btn-lg">Deny</button>
+	</div>
+
+	<div class="container" id="tickets">
+		<div class="row" id="columnHeaders">
+			<div class="col-sm">Id</div>
+			<div class="col-sm">Amount</div>
+			<div class="col-sm">Submitted</div>
+			<div class="col-sm">Resolved</div>
+			<div class="col-sm">Description</div>
+			<div class="col-sm">Author</div>
+			<div class="col-sm">Resolved By</div>
+			<div class="col-sm">Status</div>
+			<div class="col-sm">Type</div>
+			<div class="col-sm">Check</div>
+		</div>
+
+		<form>
+			<div>
+				<input type="checkbox">
+			</div>
+		</form>
+
+	</div>
+
+
+	<script src="../JS/admin.js"></script>
 </body>
 </html>

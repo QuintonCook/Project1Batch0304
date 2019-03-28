@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>MVC1</title>
 </head>
-<body>
-<h1>IT WORKS!</h1>
+<body class=backdrop id=MVC1>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<div class="col align-self-center">
+		<h1 class=title>Welcome!</h1>
+		<p class=entrytext style="position: relative; left: 59px;">
+			<span>Welcome to your Frizzleco ERS system!<br></span> Please
+			provide your username and password below to continue.
+		</p>
+	</div>
+
+
+	<div style="position: relative; left: 70px;"
+		class="input-group-prepend">
+		<span class="input-group-text" id="basic-addon1">Username</span>
+	</div>
+	<form action="/Project1-0304/controller?command=Login" method="POST" >
+		<input style="position: relative; left: 70px;" type="text"
+			class="form-control0" placeholder="Username" aria-label="Username"
+			aria-describedby="basic-addon1" id="username" name="username">
+		
+
+		<div style="position: relative; left: 70px; top: 20px"
+			class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon1">Password</span>
+		</div>
+		<input style="position: relative; left: 70px; top: 20px" type="text"
+			class="form-control1" placeholder="Password" aria-label="Username"
+			aria-describedby="basic-addon1" id="password" name="password">
+		
+		
+		<input style="position: relative; right: 9px; top: 55px"
+			class="btn btn-primary" type="submit" value="Submit" id="submitlogin">
+	</form>
+	
+	<div class="card" style="width: 18rem; bottom: 220px; left: 770px">
+		<img
+			src="https://ih0.redbubble.net/image.581804521.3391/pp,550x550.u2.jpg"
+			class="card-img-top" alt="...">
+		<div class="card-body">
+			<p>Remember to submit your reimbursal requests in a timely
+				manner.</p>
+		</div>
+	</div>
 </body>
 </html>

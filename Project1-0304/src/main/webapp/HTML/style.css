@@ -1,0 +1,56 @@
+@charset "ISO-8859-1";
+h1{
+	
+text-align: center;	font-size: 110px;	}
+
+.title {
+  background-color: rgb(0, 400, 200);;
+}
+
+.form-control0 {
+	background-color:  white;
+  width: 100%;
+  max-width: 400px; 
+}
+.form-control1 {
+  width: 100%;
+  max-width: 400px ;
+}
+.backdrop{
+	background-color: rgb(0, 400, 200);
+}
+
+h2{
+	 text-align: center;	font-size: 110px; }
+	 .backdrop2{
+	background-color: rgb(0, 400, 200);
+}
+.card{
+	background-color: rgb(221, 221, 221)
+}
+.form-control3{
+} 
+textarea{
+	width: 100%;
+	 max-width: 700px;
+	 placeholder
+}
+hr{
+	border: 1;
+	border-style: solid;
+border-color: black;
+border-width:10px;
+  width: 100%;		
+}
+td,
+	th{
+   border: 1px solid rgb(190, 190, 190);
+   padding: 10px;
+	}
+	
+	.tablelabel{
+	font-weight:bold;
+	
+	}
+
+

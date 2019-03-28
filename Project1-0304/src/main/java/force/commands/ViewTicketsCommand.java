@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import force.TransferObjects.Reimbursement;
 
@@ -16,7 +17,8 @@ public class ViewTicketsCommand extends UserCommand {
 		ArrayList<Reimbursement> result = employee.viewReimbursements(user.ersUsersId);
 		
 		// convert the result to json
-		String json = new Gson().toJson(result);
+		Gson gson = new GsonBuilder().serializeNulls().create();
+		String json = gson.toJson(result);
 
 		// send it back to the requester
 		response.setContentType("application/json");

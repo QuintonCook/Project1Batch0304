@@ -34,7 +34,6 @@ public abstract class UserCommand {
 		this.response = servletResponse;
 
 		sesh = request.getSession();
-
 		// admin = new AdminDAOImpl();
 		// employee = new EmployeeDAOImpl();
 		System.out.println("INITIALIZED THE USER COMMAND FOR TESTING");

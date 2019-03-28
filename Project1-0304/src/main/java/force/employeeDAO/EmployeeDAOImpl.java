@@ -43,7 +43,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 			cStmt.setInt(3, rmb.reimbAuthor);
 
 			result = cStmt.executeUpdate();
-
+			
 		} catch (SQLException e) {
 			// return failure print stack trace
 			e.printStackTrace();
@@ -56,7 +56,6 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 	public ArrayList<Reimbursement> viewReimbursements(int reimbAuthor) {
 		String statement = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_AUTHOR = ?";
 		ArrayList<Reimbursement> result = null;
-		System.out.println("MADE IT TO VIEW REIMBURSEMENT");
 
 		try {
 			// setup the query and execute

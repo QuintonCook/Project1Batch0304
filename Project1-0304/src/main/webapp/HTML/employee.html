@@ -2,9 +2,53 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>Employee ERS</title>
 </head>
-<body>
-<h1>EMPLOYEES CAN LOGIN</h1>
+<body class=backdrop2>
+	<div class="container">
+		<h2 style="font-size: 90px;">Employee ERS</h2>
+		<br> <br>
+
+		<div class="container">
+			<form id="request" action="/Project1-0304/controller">
+				<label for="reimbursementAmmounts">Reimbursement Ammount</label> <input
+					placeholder="$" name="ammount"> <label
+					for="reimbursementDescriptions">Reimbursement Description</label>
+				<textarea id="description" rows="3" placeholder="250 characters max"
+					name="description"></textarea>
+				<input type="hidden" name="command" value="AddReimbursement" />
+				<button id="boom" type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+	</div>
+
+	<div>
+		<br>
+		<hr>
+		<br>
+	</div>
+
+	<div class="container" id="myTickets">
+		<h3>Your Reimbursements</h3>
+		<div class="row">
+			<div class="col-sm">Id</div>
+			<div class="col-sm">Amount</div>
+			<div class="col-sm">Submitted</div>
+			<div class="col-sm">Resolved</div>
+			<div class="col-sm">Description</div>
+			<div class="col-sm">Receipt</div>
+			<div class="col-sm">Author</div>
+			<div class="col-sm">Resolved By</div>
+			<div class="col-sm">Status</div>
+			<div class="col-sm">Type</div>
+		</div>
+	</div>
+
+	<script src="../JS/employee.js">
+		
+	</script>
 </body>
 </html>

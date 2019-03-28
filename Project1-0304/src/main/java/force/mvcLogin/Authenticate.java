@@ -1,6 +1,8 @@
 package force.mvcLogin;
 
 import java.io.IOException;
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpSession;
 
 import force.TransferObjects.Employee;
@@ -11,23 +13,21 @@ public class Authenticate extends AuthenticationStep {
 	@Override
 	public void process() {
 		// get the parameters from the post request body
-		String userName = request.getParameter("userName");
+		String userName = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		System.out.println("MADE IT TO THE PROCESS IN AUTHENTICATE");
-		// check the credentials against the database
-		AuthenticateDAOImpl login = new AuthenticateDAOImpl();
-		Employee placeHolder = login.authenticate(userName, password);
-		
 		try {
-			
+			// check the credentials against the database
+			AuthenticateDAOImpl login = new AuthenticateDAOImpl();
+			Employee placeHolder = login.authenticate(userName, password);
+
 			if (placeHolder != null) {
 				// initialize a session object for the employee associate the employee object
 				// with the session
 				HttpSession session = request.getSession();
 				session.setAttribute("employee", placeHolder);
-				
-				//log the event
+
+				// log the event
 				logger.info("A user logged in");
 
 				// pass the session to the next node to generate the view
@@ -40,6 +40,8 @@ public class Authenticate extends AuthenticationStep {
 			}
 
 		} catch (IOException e) {
+			logger.warn(e);
+		} catch (Exception e) {
 			logger.warn(e);
 		}
 

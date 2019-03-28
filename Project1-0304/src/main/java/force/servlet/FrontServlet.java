@@ -10,18 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import force.TransferObjects.Employee;
 import force.commands.UnknownCommand;
 import force.commands.UserCommand;
 
-public class AdminHandler extends HttpServlet {
+public class FrontServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	final static Logger logger = LogManager.getLogger(AdminHandler.class);
+	final static Logger logger = LogManager.getLogger(FrontServlet.class);
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
