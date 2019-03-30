@@ -9,20 +9,37 @@
 </head>
 <body class=backdrop2>
 	<div class="container">
-		<h2 style="font-size: 90px;">Employee ERS</h2>
-		<br> <br>
-
-		<div class="container">
-			<form id="request" action="/Project1-0304/controller">
-				<label for="reimbursementAmmounts">Reimbursement Ammount</label> <input
-					placeholder="$" name="ammount"> <label
-					for="reimbursementDescriptions">Reimbursement Description</label>
-				<textarea id="description" rows="3" placeholder="250 characters max"
-					name="description"></textarea>
-				<input type="hidden" name="command" value="AddReimbursement" />
-				<button id="boom" type="submit" class="btn btn-primary">Submit</button>
-			</form>
+		<div class="row justify-content-md-center">
+			<h2 style="font-size: 90px;">Employee ERS</h2>
 		</div>
+		<div class="row justify-content-md-center">
+			<div class="form-group">
+				<form action="/Project1-0304/controller">
+					<input hidden="hidden" name="command" value="Logout" />
+					<button type="submit" class="btn btn-primary" id="submitRequest">Logout</button>
+				</form>
+			</div>
+		</div>
+		<br> <br>
+	</div>
+
+	<div>
+		<form action="/Project1-0304/controller" method="POST">
+			<div class="form-group">
+				<label for="reimbAmmounts">Reimbursement Amount</label> <input
+					class="form-control" id="reimbAmmount" placeholder="$"
+					name="ammount">
+			</div>
+			
+			<div class="form-group">
+				<label for="description">Description</label>
+				<textarea class="form-control" id="description" name="description"
+					rows="3"></textarea>
+			</div>
+			<input hidden="hidden" name="command" value="AddReimbursement" />
+
+			<button type="submit" class="btn btn-primary" id="submitRequest">Submit</button>
+		</form>
 	</div>
 
 	<div>
@@ -31,20 +48,29 @@
 		<br>
 	</div>
 
-	<div class="container" id="myTickets">
+
+	<div class="container">
 		<h3>Your Reimbursements</h3>
-		<div class="row">
-			<div class="col-sm">Id</div>
-			<div class="col-sm">Amount</div>
-			<div class="col-sm">Submitted</div>
-			<div class="col-sm">Resolved</div>
-			<div class="col-sm">Description</div>
-			<div class="col-sm">Receipt</div>
-			<div class="col-sm">Author</div>
-			<div class="col-sm">Resolved By</div>
-			<div class="col-sm">Status</div>
-			<div class="col-sm">Type</div>
-		</div>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Amount</th>
+					<th>Submitted</th>
+					<th>Resolved</th>
+					<th>Description</th>
+					<th>Receipt</th>
+					<th>Author</th>
+					<th>Resolved By</th>
+					<th>Status</th>
+					<th>Type</th>
+				</tr>
+			</thead>
+			<tbody id="myTickets">
+
+			</tbody>
+		</table>
 	</div>
 
 	<script src="../JS/employee.js">

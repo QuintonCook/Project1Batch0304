@@ -16,7 +16,7 @@ public abstract class UserCommand {
 
 	protected AdminDAOImpl admin;
 	protected EmployeeDAOImpl employee;
-	private HttpSession sesh;
+	protected HttpSession sesh;
 	protected ServletContext context;
 	protected HttpServletRequest request;
 	protected HttpServletResponse response;

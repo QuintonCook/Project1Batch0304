@@ -1,7 +1,6 @@
 package force.mvcLogin;
 
 import java.io.IOException;
-import java.util.Enumeration;
 
 import javax.servlet.http.HttpSession;
 
@@ -34,7 +33,6 @@ public class Authenticate extends AuthenticationStep {
 				next.init(context, request, response, session);
 				next.process();
 			} else {
-				System.out.println("MADE IT TO THE REDIRECT");
 				// if the user was unable to authenticate, redirect them back to the login page
 				response.sendRedirect("/Project1-0304/HTML/login.html?authentication=failed");
 			}

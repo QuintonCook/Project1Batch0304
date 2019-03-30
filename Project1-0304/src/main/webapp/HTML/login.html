@@ -5,7 +5,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="style.css">
 <meta charset="ISO-8859-1">
-<title>MVC1</title>
+<title>Login</title>
 </head>
 <body class=backdrop id=MVC1>
 	<script
@@ -24,11 +24,12 @@
 		class="input-group-prepend">
 		<span class="input-group-text" id="basic-addon1">Username</span>
 	</div>
-	<form action="/Project1-0304/controller?command=Login" method="POST" >
+
+	<form action="/Project1-0304/controller?command=Login" method="POST">
 		<input style="position: relative; left: 70px;" type="text"
 			class="form-control0" placeholder="Username" aria-label="Username"
 			aria-describedby="basic-addon1" id="username" name="username">
-		
+
 
 		<div style="position: relative; left: 70px; top: 20px"
 			class="input-group-prepend">
@@ -37,12 +38,16 @@
 		<input style="position: relative; left: 70px; top: 20px" type="text"
 			class="form-control1" placeholder="Password" aria-label="Username"
 			aria-describedby="basic-addon1" id="password" name="password">
-		
-		
+
+
 		<input style="position: relative; right: 9px; top: 55px"
 			class="btn btn-primary" type="submit" value="Submit" id="submitlogin">
 	</form>
-	
+
+	<br>
+	<p id="loginFailure"></p>
+
+
 	<div class="card" style="width: 18rem; bottom: 220px; left: 770px">
 		<img
 			src="https://ih0.redbubble.net/image.581804521.3391/pp,550x550.u2.jpg"
@@ -52,5 +57,7 @@
 				manner.</p>
 		</div>
 	</div>
+
+	<script src="../JS/login.js"></script>
 </body>
 </html>

@@ -126,7 +126,7 @@ public class DatabaseCallsTest {
 	public void viewAllReimbursements() {
 		AdminDAOImpl a = new AdminDAOImpl();
 
-		ArrayList<Reimbursement> result = a.viewReimbursementsByStatus(-1);
+		ArrayList<Reimbursement> result = a.viewReimbursementsByStatus(-1,2);
 
 		assertEquals(3, result.size());
 	}
@@ -134,7 +134,7 @@ public class DatabaseCallsTest {
 	@Ignore
 	public void viewSpecificReimbursements() {
 		AdminDAOImpl a = new AdminDAOImpl();
-		ArrayList<Reimbursement> result = a.viewReimbursementsByStatus(1);
+		ArrayList<Reimbursement> result = a.viewReimbursementsByStatus(1,2);
 
 		assertEquals(22, result.get(0).reimbId);
 	}
@@ -142,7 +142,7 @@ public class DatabaseCallsTest {
 	@Ignore
 	public void viewSpecificReimbursementsBadStatusId() {
 		AdminDAOImpl a = new AdminDAOImpl();
-		ArrayList<Reimbursement> result = a.viewReimbursementsByStatus(2222);
+		ArrayList<Reimbursement> result = a.viewReimbursementsByStatus(2222,2);
 
 		System.out.println(result);
 		
@@ -153,7 +153,7 @@ public class DatabaseCallsTest {
 	@Ignore
 	public void badReimbursementStatusId() {
 		AdminDAOImpl a = new AdminDAOImpl();
-		ArrayList<Reimbursement> result = a.viewReimbursementsByStatus(66);
+		ArrayList<Reimbursement> result = a.viewReimbursementsByStatus(66,2);
 
 		assertEquals(0, result.size());
 	}

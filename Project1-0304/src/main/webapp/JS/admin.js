@@ -10,44 +10,52 @@ window.onload = function() {
 // click listeners
 document.getElementById('approvebtn').addEventListener("click", function() {
 	makeChanges(1);
-	clearTickets("tickets");
-	populateReimbursements(-1);
+	clearTickets();
+	setTimeout(function(){
+		document.getElementById('filter').selectedIndex=2;
+		getTickets(1);
+	},500);
 });
 
 document.getElementById('denybtn').addEventListener("click", function() {
 	makeChanges(2);
-	clearTickets("tickets");
-	populateReimbursements(-1);
+	clearTickets();
+	setTimeout(function(){
+		document.getElementById('filter').selectedIndex=3;
+		getTickets(2);
+	},500);
 });
 
-// click listeners
-document.getElementById("boom").addEventListener("click", function() {
-	clearTickets("myTickets");
-	getEmployeeTickets();
+document.getElementById('filter').addEventListener("change",function(){
+	clearTickets();
+	getTickets(this.value);
 });
 
 // gets the tickets that the admin can approve
 function getTickets(statusId) {
+	// setup a connection
 	let data = new XMLHttpRequest();
-
 	data.onreadystatechange = function() {
-		if (data.readystate == 4 && data.status == 200) {
+		if (data.readyState == 4 && data.status == 200) {
+			// parse the json then populate the tickets
 			let reimb = JSON.parse(data.responseText);
-			populateReimbursements(reimb, "tickets");
+			populateReimbursements(reimb);
 		}
 	}
 
+	// FIRE!
 	data.open("GET",
 			"/Project1-0304/controller?command=ViewReimbursementsByStatus&reimbStatusId="
 					+ statusId);
 	data.send();
 }
 
+// gets the admins own tickets
 function getAdminsTickets() {
 	let data = new XMLHttpRequest();
 
 	data.onreadystatechange = function() {
-		if (data.readystate == 4 && data.status == 200) {
+		if (data.readyState == 4 && data.status == 200) {
 			let reimb = JSON.parse(data.responseText);
 			populateMyReimbursements(reimb);
 		}
@@ -58,60 +66,32 @@ function getAdminsTickets() {
 
 }
 
+// populates the tickets the admin can approve
 function populateReimbursements(reimb) {
 
 	// iterate through the reimbursement array
 	for (i = 0; i < reimb.length; i++) {
 
-		// create a form
-		let formContainer = document.createElement("form");
-		formContainer
-				.setAttribute('action',
-						'/Project1-0304/controller?command="ReviewReimbursement"&reimbStatusId=');
-		formContainer.setAttribute('method', 'POST');
-
 		// create a new row in the table
-		let newRow = document.createElement("div");
-		newRow.setAttribute("class", "row");
-
-		// append the new row to the form container
-		formContainer.appendChild(newRow);
+		let newRow = document.createElement("tr");
 
 		// grab the current record we want to insert
 		let newRecord = reimb[i];
 
-		// create the first column to be a text area so it gets submitted to the
-		// server
-		let firstCol = document.createElement("div");
-		col.setAttribute("class", "col-sm");
-
-		// create the text area
-		let id = document.createElement("input")
-		id.setAttribute("name", "id")
-		id.setAttribute("readonly", "readonly");
-		id.textContent = newRecord[0];
-
-		// append the items
-		firstCol.appendChild(id);
-		newRow.appendChild(firstCol);
-
 		// for each of the columns in the new record create a new table entry
-		for (j = 1; j < newRecord.length; j++) {
-			// create a div that will be the column of the record
-			let col = document.createElement("div");
-			col.setAttribute("class", "col-sm");
-
+		Object.keys(newRecord).forEach(function(key) {
+			// create a td that will be the column of the record
+			let col = document.createElement("td");
 			// append the data to the column
-			let newContent = document.createTextNode(newRecord[j]);
+			let newContent = document.createTextNode(newRecord[key]);
 			col.appendChild(newContent);
 
 			// append the column to the table
 			newRow.appendChild(col);
-		}
+		})
 
 		// create the last column
-		let lastCol = document.createElement("div");
-		lastCol.setAttribute("class", "col-sm");
+		let lastCol = document.createElement("td");
 
 		// create a checkbox
 		let check = document.createElement("input");
@@ -126,60 +106,84 @@ function populateReimbursements(reimb) {
 		// add the new row to the table
 		document.getElementById("tickets").appendChild(newRow);
 	}
+	
 }
 
+// populates the admins own tickets
 function populateMyReimbursements(reimb) {
 
 	// iterate through the reimbursement array
 	for (i = 0; i < reimb.length; i++) {
 
 		// create a new row in the table
-		let newRow = document.createElement("div");
-		newRow.setAttribute("class", "row");
+		let newRow = document.createElement("tr");
 
 		// grab the current record we want to insert
 		let newRecord = reimb[i];
 
-		// for each of the columns in the new record create a new table entry
 		Object.keys(newRecord).forEach(function(key) {
 
-			let col = document.createElement("div");
-			col.setAttribute("class", "col-sm");
-
+			// for each of the columns in the new record create a new table
+			// entry
+			let col = document.createElement("td");
 			let newContent = document.createTextNode(newRecord[key]);
 
+			// append the data to the column then append the column to the new
+			// row
 			col.appendChild(newContent);
 			newRow.appendChild(col);
 		})
 
-		// add the column to the new row
-		newRow.appendChild(lastCol);
-
 		// add the new row to the table
 		document.getElementById("myTickets").appendChild(newRow);
 	}
+	
 }
 
-function clearTickets(elementId) {
-	// Removes an element from the document
-	let element = document.getElementById(elementId);
-	let divs = element.getElementsByTagName("div");
+// clears out elements from tables
+function clearTickets() {
+	// finds the root element
+	let element = document.getElementById("TheTable");
 
-	for (i = 0; i < divs.length; i++) {
-		if (divs[i].getAttribute("id") != "columnHeaders") {
-			element.removeChild(divs[i]);
-		}
-	}
+	//removes the table body
+	element.removeChild(element.children[1]);
+	
+	//create a new table body with the same id
+	let newBody = document.createElement("tbody");
+	newBody.setAttribute("id","tickets");
+	element.appendChild(newBody);
+	
 }
 
+// approves or denies requests
 function makeChanges(statusId) {
 	// get the div tickets and all of the forms that are a child of tickets
 	let table = document.getElementById('tickets');
-	let forms = table.getElemenetsByTagName('form');
+	let rows = table.children
 
-	for (i = 0; i < forms.length; i++) {
-		let attr = forms[i].getAttribute("action");
-		forms[i].setAttribute("action", attr + statusId);
-		forms[i].submit();
+	alert("made it here");
+	for (i = 0; i < rows.length; i++) {
+		let fields = rows[i].children
+
+		// if the form is checked update the record
+		if (fields[fields.length-1].children[0].checked) {
+			fireUpdate(fields[0].textContent, statusId);
+		}
+
 	}
+}
+
+//This fires the update
+function fireUpdate(id, statusId) {
+
+	// get a new request
+	let updater = new XMLHttpRequest();
+
+	console.log(id);
+	// fire the update
+	updater.open("GET",
+			"/Project1-0304/controller?command=ReviewReimbursement&newStatus="
+					+ statusId + "&id=" + id);
+	updater.send();
+
 }

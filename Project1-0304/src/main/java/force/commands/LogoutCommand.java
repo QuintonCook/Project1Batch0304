@@ -2,18 +2,17 @@ package force.commands;
 
 import java.io.IOException;
 
-public class MyIdCommand extends UserCommand {
+public class LogoutCommand extends UserCommand {
 
 	@Override
 	public void process() {
 		// sends the ersUsersId back to the requester
-		response.setContentType("text/plain");
-		response.setCharacterEncoding("UTF-8");
+		sesh.invalidate();
 		try {
-			response.getWriter().write(Integer.toString(user.ersUsersId));
+			response.sendRedirect("/Project1-0304/HTML/login.html");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			logger.warn(e);
+			e.printStackTrace();
 		}
 	}
 

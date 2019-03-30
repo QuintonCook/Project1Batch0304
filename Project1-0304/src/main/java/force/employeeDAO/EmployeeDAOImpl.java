@@ -79,7 +79,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
 		} catch (SQLException e) {
 			// if something goes wrong, log it and return null
-			e.printStackTrace();
+			System.out.println("WOO");
 		}
 
 		return result;

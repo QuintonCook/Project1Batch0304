@@ -16,8 +16,8 @@ public class AdminDAOImpl implements AdminDAO {
 	public AdminDAOImpl() {
 
 		try {
-			//sets up the JDBC driver!
-			 Class.forName("oracle.jdbc.driver.OracleDriver");
+			// sets up the JDBC driver!
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 			// initiates the connection to the database
 			conn = DriverManager.getConnection(url, username, passwordDB);
 		} catch (SQLException e) {
@@ -30,12 +30,12 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public ArrayList<Reimbursement> viewReimbursementsByStatus(int status) {
+	public ArrayList<Reimbursement> viewReimbursementsByStatus(int status, int ersUsersId) {
 
 		ResultSet rs = null;
 		ArrayList<Reimbursement> result = null;
-		String statement1 = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID = ?";
-		String statement2 = "SELECT * FROM ERS_REIMBURSEMENT";
+		String statement1 = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_STATUS_ID = ? AND REIMB_AUTHOR <> ?";
+		String statement2 = "SELECT * FROM ERS_REIMBURSEMENT WHERE REIMB_AUTHOR <> ?";
 
 		try {
 			PreparedStatement cStmt = null;
@@ -44,8 +44,10 @@ public class AdminDAOImpl implements AdminDAO {
 			if (status >= 0) {
 				cStmt = conn.prepareStatement(statement1);
 				cStmt.setInt(1, status);
+				cStmt.setInt(2, ersUsersId);
 			} else {
 				cStmt = conn.prepareStatement(statement2);
+				cStmt.setInt(1, ersUsersId);
 			}
 
 			rs = cStmt.executeQuery();
@@ -53,18 +55,16 @@ public class AdminDAOImpl implements AdminDAO {
 			// move the pointer to the first row, if this works then we can initialize the
 			// result array list
 			rs.next();
-			
+
 			result = new ArrayList<Reimbursement>();
-			
-			// populate the result arrayList
-			do{
-				
-			
+
+			// populate the result array
+			do {
 				Reimbursement tmp = new Reimbursement(rs.getInt(1), rs.getDouble(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getBlob(6), rs.getInt(7), rs.getInt(8), rs.getInt(9), rs.getInt(10));
-				
+
 				result.add(tmp);
-			}while(rs.next());
+			} while (rs.next());
 
 		} catch (SQLException e) {
 			// If something goes wrong, log it and return null
